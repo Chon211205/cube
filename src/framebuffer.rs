@@ -13,11 +13,7 @@ impl Framebuffer {
         let background_color = Color::BLACK;
 
         let raw_image = unsafe {
-            raylib::ffi::GenImageColor(
-                width,
-                height,
-                background_color
-            )
+            raylib::ffi::GenImageColor(width, height, background_color)
         };
 
         let image = unsafe {
@@ -49,17 +45,8 @@ impl Framebuffer {
         self.set_pixel_color(x, y, self.current_color);
     }
 
-    pub fn set_pixel_color(
-        &mut self,
-        x: i32,
-        y: i32,
-        color: Color,
-    ) {
-        if x >= 0
-            && x < self.width
-            && y >= 0
-            && y < self.height
-        {
+    pub fn set_pixel_color(&mut self, x: i32, y: i32, color: Color) {
+        if x >= 0 && x < self.width && y >= 0 && y < self.height {
             self.image.draw_pixel(x, y, color);
         }
     }
